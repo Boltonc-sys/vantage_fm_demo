@@ -1,0 +1,15 @@
+# Easiest deploy: push this repo to GitHub, then Render → New → Blueprint → select repo.
+# Demo only: no Anthropic calls, no API credits.
+services:
+  - type: web
+    name: vantage-fm-demo
+    runtime: python
+    plan: free
+    rootDir: vantage-fm-python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --workers 1
+    envVars:
+      - key: DEMO_MODE
+        value: "true"
+      - key: DEMO_ONLY
+        value: "true"
