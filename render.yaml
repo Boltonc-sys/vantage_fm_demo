@@ -1,11 +1,10 @@
-# Easiest deploy: push this repo to GitHub, then Render → New → Blueprint → select repo.
-# Demo only: no Anthropic calls, no API credits.
+# Use this render.yaml when your GitHub repo has app.py at the TOP level
+# (no "vantage-fm-python" subfolder). Example: github.com/Boltonc-sys/vantage_fm_demo
 services:
   - type: web
     name: vantage-fm-demo
     runtime: python
     plan: free
-    rootDir: vantage-fm-python
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --workers 1
     envVars:
